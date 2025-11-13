@@ -67,3 +67,36 @@ int findMaxSubmatrixSum(int** matrix, int n, int k) {
     }
     return maxSum;
 }
+
+bool isMagicSquare(int** matrix, int n) {
+    if (n == 0) return false;
+    int targetSum = 0;
+    for (int j = 0; j < n; j++) {
+        targetSum += matrix[0][j];
+    }
+    for (int i = 0; i < n; i++) {
+        int rowSum = 0;
+        for (int j = 0; j < n; j++) {
+            rowSum += matrix[i][j];
+        }
+        if (rowSum != targetSum) return false;
+    }
+    for (int j = 0; j < n; j++) {
+        int colSum = 0;
+        for (int i = 0; i < n; i++) {
+            colSum += matrix[i][j];
+        }
+        if (colSum != targetSum) return false;
+    }
+    int diag1 = 0;
+    for (int i = 0; i < n; i++) {
+        diag1 += matrix[i][i];
+    }
+    if (diag1 != targetSum) return false;
+    int diag2 = 0;
+    for (int i = 0; i < n; i++) {
+        diag2 += matrix[i][n - 1 - i];
+    }
+    if (diag2 != targetSum) return false;
+    return true;
+}
