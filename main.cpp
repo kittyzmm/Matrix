@@ -48,3 +48,22 @@ void rotateMatrix270(int** matrix, int n) {
     rotateMatrix90(matrix, n);
     rotateMatrix90(matrix, n);
 }
+
+int findMaxSubmatrixSum(int** matrix, int n, int k) {
+    if (k > n) return 0;
+    int maxSum = INT_MIN;
+    for (int i = 0; i <= n - k; i++) {
+        for (int j = 0; j <= n - k; j++) {
+            int sum = 0;
+            for (int di = 0; di < k; di++) {
+                for (int dj = 0; dj < k; dj++) {
+                    sum += matrix[i + di][j + dj];
+                }
+            }
+            if (sum > maxSum) {
+                maxSum = sum;
+            }
+        }
+    }
+    return maxSum;
+}
