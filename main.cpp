@@ -27,3 +27,24 @@ int** copyMatrix(int** src, int n) {
     }
     return dest;
 }
+
+void rotateMatrix90(int** matrix, int n) {
+    int** temp = copyMatrix(matrix, n);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            matrix[i][j] = temp[n - 1 - j][i];
+        }
+    }
+    deleteMatrix(temp, n);
+}
+
+void rotateMatrix180(int** matrix, int n) {
+    rotateMatrix90(matrix, n);
+    rotateMatrix90(matrix, n);
+}
+
+void rotateMatrix270(int** matrix, int n) {
+    rotateMatrix90(matrix, n);
+    rotateMatrix90(matrix, n);
+    rotateMatrix90(matrix, n);
+}
